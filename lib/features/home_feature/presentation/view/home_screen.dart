@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:todolist_sqflite/core/utils/extentions.dart';
+import 'package:todolist_sqflite/core/utils/task_category.dart';
 import 'package:todolist_sqflite/core/utils/widgets/costume_container.dart';
 import 'package:todolist_sqflite/core/utils/widgets/display_white_string.dart';
-import 'package:todolist_sqflite/core/utils/widgets/list_build_task.dart';
+import 'package:todolist_sqflite/features/home_feature/presentation/view/widgets/list_build_task.dart';
 import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -45,7 +46,22 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ListTask(
-                  tasks: const [],
+                  tasks: [
+                    TaskModel(
+                        title: "Be Active On YouTube",
+                        note: "notesd",
+                        date: "11/3",
+                        time: "11,3 AM",
+                        taskCategory: TaskCategory.education,
+                        isCompleted: false),
+                    TaskModel(
+                        title: "Title",
+                        note: "notesd",
+                        date: "11/3",
+                        time: "11,3 AM",
+                        taskCategory: TaskCategory.personal,
+                        isCompleted: false),
+                  ],
                 ),
                 const Gap(10),
                 Text(
@@ -56,7 +72,24 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const Gap(10),
                 ListTask(
-                  tasks: [TaskModel(title: "Title", note: "notesd", date:"11/3" , time:"11,3 AM" )],
+                  tasks: [
+                    TaskModel(
+                      title: "Title",
+                      note: "notesd",
+                      date: "11/3",
+                      time: "11,3 AM",
+                      taskCategory: TaskCategory.education,
+                      isCompleted: true,
+                    ),
+                    TaskModel(
+                      title: "Title",
+                      note: "notesd",
+                      date: "11/3",
+                      time: "11,3 AM",
+                      taskCategory: TaskCategory.health,
+                      isCompleted: true,
+                    ),
+                  ],
                   isCompleted: true,
                 ),
                 const Gap(10),
