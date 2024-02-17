@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist_sqflite/config/routes/routes.dart';
 import 'package:todolist_sqflite/config/themeing/app_themeing.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/home_screen.dart';
 
@@ -12,11 +13,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: AppTheming.light,
       title: 'Flutter Demo',
-      home: const HomeScreen(),
+      routerConfig: AppRouter.router,
     );
   }
 }
