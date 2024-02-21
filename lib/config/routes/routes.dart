@@ -9,7 +9,7 @@ class AppRouter{
   static final router=GoRouter(
       routes: [
         GoRoute(path: homeScreen, builder: (context, state) => const HomeScreen(),),
-        GoRoute(path: addNewTaskScreen, builder: (context, state) => const NewTaskScreen(),),
+        GoRoute(path: addNewTaskScreen, builder: (context, state) =>  NewTaskScreen(),),
       ]
 
   );
