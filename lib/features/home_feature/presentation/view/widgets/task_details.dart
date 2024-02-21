@@ -16,7 +16,7 @@ class TaskDetail extends StatelessWidget {
     final fontWeight = task.isCompleted ? FontWeight.normal : FontWeight.bold;
     return Column(
       children: [
-        CostumeCategory(task),
+        CostumeCategory(task:task.taskCategory),
         const Gap(15),
         Text(
           task.title,

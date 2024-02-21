@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
+import 'package:todolist_sqflite/core/utils/app_string.dart';
 import 'package:todolist_sqflite/core/utils/extentions.dart';
+import 'package:todolist_sqflite/core/utils/helpers.dart';
+import 'package:todolist_sqflite/core/utils/task_category.dart';
+import 'package:todolist_sqflite/core/utils/widgets/costume_category.dart';
 import 'package:todolist_sqflite/core/utils/widgets/display_white_string.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view/widgets/costume_text_field.dart';
+import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view/widgets/select_category.dart';
+import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view/widgets/select_date_time.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view_model/chang_date_time_cubit.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/widgets/task_tile.dart';
 
@@ -19,6 +26,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocProvider(
       create: (context) => ChangDateTimeCubit(),
       child: Scaffold(
@@ -38,42 +46,10 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                 titleText: "TaskTitle",
                 hintText: "Task Title",
               ),
+              const Gap(15),
+              SelectCategory(),
               const Gap(20),
-              BlocBuilder<ChangDateTimeCubit, ChangDateTimeState>(
-                builder: (context, state) {
-                  return Row(
-                    children: [
-                      Expanded(
-                        child: CostumeTextFiled(
-                          titleText: "Date",
-                          hintText: ChangDateTimeCubit.get(context).date.toString().substring(0,10),
-                          iconButton: IconButton(
-                            onPressed: () async {
-                             ChangDateTimeCubit.get(context).showDate(context);
-                            },
-                            icon: const Icon(Icons.date_range),
-                          ),
-                        ),
-                      ),
-                      const Gap(10),
-                      Expanded(
-                        child: CostumeTextFiled(
-                          titleText: "Time",
-                          hintText: "${ChangDateTimeCubit
-                              .get(context)
-                              .time}",
-                          iconButton: IconButton(
-                            onPressed: () {
-                              ChangDateTimeCubit.get(context).showTime(context);
-                            },
-                            icon: const Icon(Icons.access_time_outlined),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
+              const SelectDateTime(),
               const Gap(20),
               const CostumeTextFiled(
                 titleText: "Notes",
@@ -95,8 +71,4 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       ),
     );
   }
-
-
-
-
 }

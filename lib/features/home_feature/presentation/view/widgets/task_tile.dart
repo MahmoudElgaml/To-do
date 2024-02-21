@@ -15,7 +15,8 @@ class TaskTile extends StatelessWidget {
     final textDecoration =
         task.isCompleted ? TextDecoration.lineThrough : TextDecoration.none;
     final fontWeight = task.isCompleted ? FontWeight.normal : FontWeight.bold;
-
+    final double iconOpacity = task.isCompleted ? 0.3 : 0.5;
+    final double backgroundOpacity = task.isCompleted ? 0.1 : 0.3;
     return Padding(
       padding: const EdgeInsets.all(10),
       child: InkWell(
@@ -28,7 +29,10 @@ class TaskTile extends StatelessWidget {
         },
         child: Row(
           children: [
-            CostumeCategory(task),
+            CostumeCategory(
+                task: task.taskCategory,
+                backgroundOpacity: iconOpacity,
+                iconOpacity: backgroundOpacity),
             const Gap(15),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,16 +62,16 @@ class TaskTile extends StatelessWidget {
 
   Future<dynamic> buildShowModalBottomSheet(BuildContext context) {
     return showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: TaskDetail(task),
-              ),
-            );
-          },
+      context: context,
+      builder: (context) {
+        return Container(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: TaskDetail(task),
+          ),
         );
+      },
+    );
   }
 }
