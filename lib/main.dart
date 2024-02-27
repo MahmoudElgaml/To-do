@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:todolist_sqflite/config/routes/routes.dart';
 import 'package:todolist_sqflite/config/themeing/app_themeing.dart';
+import 'package:todolist_sqflite/core/utils/constants.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/home_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+ await Hive.openBox(taskBox);
+
   runApp(const MyApp());
 }
 
