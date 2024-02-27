@@ -39,33 +39,35 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(25.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const CostumeTextFiled(
-                titleText: "TaskTitle",
-                hintText: "Task Title",
-              ),
-              const Gap(15),
-              SelectCategory(),
-              const Gap(20),
-              const SelectDateTime(),
-              const Gap(20),
-              const CostumeTextFiled(
-                titleText: "Notes",
-                hintText: "Notes",
-                maxLines: 6,
-              ),
-              const Gap(15),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  "Save",
-                  style: context.textTheme.titleMedium!
-                      .copyWith(color: Colors.white, fontSize: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const CostumeTextFiled(
+                  titleText: "TaskTitle",
+                  hintText: "Task Title",
                 ),
-              ),
-            ],
+                const Gap(15),
+                SelectCategory(),
+                const Gap(20),
+                const SelectDateTime(),
+                const Gap(20),
+                const CostumeTextFiled(
+                  titleText: "Notes",
+                  hintText: "Notes",
+                  maxLines: 6,
+                ),
+                const Gap(15),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Save",
+                    style: context.textTheme.titleMedium!
+                        .copyWith(color: Colors.white, fontSize: 20),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
