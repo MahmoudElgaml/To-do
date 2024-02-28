@@ -11,19 +11,23 @@ class AddTaskCubit extends Cubit<AddTaskState> {
   AddTaskRepo addTaskRepo;
 
   AddTaskCubit(this.addTaskRepo) : super(AddTaskInitial());
+
   static AddTaskCubit get(context) => BlocProvider.of(context);
-  addTask(TaskModel task) {
+
+  addTask(TaskModel task) async {
     emit(AddTaskLoading());
-    try {
-      if(task.title==null){
-        emit(AddTaskFailure("title is null"));
-      }
-      else {
-        addTaskRepo.addTask(task);
-        emit(AddTaskSuccess());
-      }
-    } catch (e) {
-      emit(AddTaskFailure(e.toString()));
+
+    if (task.title == null) {
+      emit(AddTaskFailure("title is null"));
+    } else {
+      var result = await addTaskRepo.addTask(task);
+
+      result.fold(
+        (fail) => emit(
+          AddTaskFailure(fail.toString()),
+        ),
+        (success) => emit(AddTaskSuccess()),
+      );
     }
   }
 }
