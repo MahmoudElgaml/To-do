@@ -32,7 +32,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   TextEditingController? noteController;
   String? date;
   String? time;
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -69,6 +69,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                     CostumeTextFiled(
                       titleText: "TaskTitle",
                       hintText: "Task Title",
+                      formKey: _formKey,
                       onChanged: (value){
                        title =value;
                       },
@@ -86,18 +87,21 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                     const Gap(15),
                     ElevatedButton(
                       onPressed: () {
-                        var task = TaskModel(
-                            title: title,
-                            note: noteController?.text,
-                            date:
-                                ChangDateTimeCubit.get(context).date.toString(),
-                            time:
-                                ChangDateTimeCubit.get(context).time.toString(),
-                            taskCategoryId: 1,
-                            isCompleted: false);
-                        AddTaskCubit.get(context).addTask(task);
-                       context.go(AppRouter.homeScreen);
-
+                        if (_formKey.currentState!.validate())  {
+                          var task = TaskModel(
+                              title: title,
+                              note: noteController?.text,
+                              date: ChangDateTimeCubit.get(context)
+                                  .date
+                                  .toString(),
+                              time: ChangDateTimeCubit.get(context)
+                                  .time
+                                  .toString(),
+                              taskCategoryId: 1,
+                              isCompleted: false);
+                          AddTaskCubit.get(context).addTask(task);
+                          context.go(AppRouter.homeScreen);
+                        }
                       },
                       child: Text(
                         "Save",
