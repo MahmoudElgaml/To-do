@@ -27,7 +27,7 @@ class TaskModel extends HiveObject{
     required this.note,
     required this.date,
     required this.time,
-     this.taskCategory,
+     this.taskCategory=TaskCategory.education,
     required this.isCompleted,
     this.taskCategoryId
   });

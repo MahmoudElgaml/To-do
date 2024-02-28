@@ -11,7 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(TaskModelAdapter());
-  await Hive.openBox(taskBox);
+  await Hive.openBox<TaskModel>(taskBox);
 
 
   runApp(const MyApp());
