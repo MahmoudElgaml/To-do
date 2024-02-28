@@ -16,10 +16,10 @@ class TaskDetail extends StatelessWidget {
     final fontWeight = task.isCompleted ? FontWeight.normal : FontWeight.bold;
     return Column(
       children: [
-        CostumeCategory(task:task.taskCategory),
+        CostumeCategory(task:task.taskCategory!),
         const Gap(15),
         Text(
-          task.title,
+          task.title??"",
           style: context.textTheme.titleLarge!.copyWith(
             fontWeight: fontWeight,
           ),
@@ -38,13 +38,13 @@ class TaskDetail extends StatelessWidget {
         const Gap(15),
         Divider(
           thickness: 1.5,
-          color: task.taskCategory.color,
+          color: task.taskCategory!.color,
           indent: 4,
           endIndent: 4,
         ),
         const Gap(10),
         Text(
-          task.note,
+          task.note??"",
           style: context.textTheme.titleMedium,
         ),
       ],

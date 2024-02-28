@@ -18,11 +18,11 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
     };
     return TaskModel(
       id: fields[0] as int?,
-      title: fields[1] as String,
-      note: fields[2] as String,
+      title: fields[1] as String?,
+      note: fields[2] as String?,
       date: fields[3] as String,
       time: fields[4] as String,
-      taskCategory: fields[6] as TaskCategory,
+      taskCategoryId: fields[6] as int?,
       isCompleted: fields[5] as bool,
     );
   }

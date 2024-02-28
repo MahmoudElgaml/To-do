@@ -1,0 +1,12 @@
+import 'package:hive/hive.dart';
+import 'package:todolist_sqflite/core/utils/constants.dart';
+import 'package:todolist_sqflite/features/add_new_task_feature/data/add_task_repo.dart';
+import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
+
+class AddTaskRepoimpl implements AddTaskRepo {
+  @override
+  void addTask(TaskModel task) async {
+    var myBox = Hive.box(taskBox);
+    await myBox.add(task);
+  }
+}

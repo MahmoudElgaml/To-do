@@ -30,7 +30,7 @@ class TaskTile extends StatelessWidget {
         child: Row(
           children: [
             CostumeCategory(
-                task: task.taskCategory,
+                task: task.taskCategory!,
                 backgroundOpacity: iconOpacity,
                 iconOpacity: backgroundOpacity),
             const Gap(15),
@@ -38,7 +38,7 @@ class TaskTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  task.title,
+                  task.title??"",
                   style: context.textTheme.titleLarge!.copyWith(
                     fontWeight: fontWeight,
                     decoration: textDecoration,

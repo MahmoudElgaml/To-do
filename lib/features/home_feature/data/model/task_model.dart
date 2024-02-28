@@ -7,9 +7,9 @@ class TaskModel extends HiveObject{
   @HiveField(0)
   final int? id;
   @HiveField(1)
-  final String title;
+  final String? title;
   @HiveField(2)
-  final String note;
+  final String? note;
   @HiveField(3)
   final String date;
   @HiveField(4)
@@ -17,15 +17,18 @@ class TaskModel extends HiveObject{
   @HiveField(5)
   final bool isCompleted;
   @HiveField(6)
-  final TaskCategory taskCategory;
+  final int? taskCategoryId;
+
+  final TaskCategory? taskCategory;
 
   TaskModel({
     this.id,
-    required this.title,
+     this.title,
     required this.note,
     required this.date,
     required this.time,
-    required this.taskCategory,
+     this.taskCategory,
     required this.isCompleted,
+    this.taskCategoryId
   });
 }
