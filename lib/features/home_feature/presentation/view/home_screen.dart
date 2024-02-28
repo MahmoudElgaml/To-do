@@ -22,99 +22,64 @@ class HomeScreen extends StatelessWidget {
       create: (context) => FetchTaskCubit(HomeRepoImpl()),
       child: Scaffold(
           body: Stack(
+        children: [
+          Column(
             children: [
-              Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: context.deviceSize.height * 0.3,
-                    color: colors.primary,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        DisplayWhiteString(
-                          text: "Aug6,2023",
-                          fontSize: 30,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        DisplayWhiteString(text: "My ToDo List", fontSize: 40),
-                      ],
+              Container(
+                width: double.infinity,
+                height: context.deviceSize.height * 0.3,
+                color: colors.primary,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DisplayWhiteString(
+                      text: "Aug6,2023",
+                      fontSize: 30,
+                      fontWeight: FontWeight.w400,
                     ),
-                  ),
-                ],
-              ),
-              Positioned(
-                top: context.deviceSize.height * 0.22,
-                right: 0,
-                left: 0,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      ListTask(
-                        tasks: [
-                          TaskModel(
-                              title: "Be Active On YouTube",
-                              note: "notesd",
-                              date: "11/3",
-                              time: "11,3 AM",
-                              taskCategory: TaskCategory.education,
-                              isCompleted: false),
-                          TaskModel(
-                              title: "Title",
-                              note: "notesd",
-                              date: "11/3",
-                              time: "11,3 AM",
-                              taskCategory: TaskCategory.personal,
-                              isCompleted: false),
-                        ],
-                      ),
-                      const Gap(10),
-                      Text(
-                        "completed",
-                        style: context.textTheme.headlineMedium!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Gap(10),
-                      ListTask(
-                        tasks: [
-                          TaskModel(
-                            title: "Title",
-                            note: "notesd",
-                            date: "11/3",
-                            time: "11,3 AM",
-                            taskCategory: TaskCategory.education,
-                            isCompleted: true,
-                          ),
-                          TaskModel(
-                            title: "Title",
-                            note: "notesd",
-                            date: "11/3",
-                            time: "11,3 AM",
-                            taskCategory: TaskCategory.health,
-                            isCompleted: true,
-                          ),
-                        ],
-                        isCompleted: true,
-                      ),
-                      const Gap(10),
-                      ElevatedButton(
-                          onPressed: () {
-                            context.go(AppRouter.addNewTaskScreen);
-                          },
-                          child: DisplayWhiteString(
-                            text: "Add New Task",
-                            fontSize: 20,
-                          ))
-                    ],
-                  ),
+                    DisplayWhiteString(text: "My ToDo List", fontSize: 40),
+                  ],
                 ),
               ),
-              const Text("completed")
             ],
-          )),
+          ),
+          Positioned(
+            top: context.deviceSize.height * 0.22,
+            right: 0,
+            left: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ListTask(),
+                  const Gap(10),
+                  Text(
+                    "completed",
+                    style: context.textTheme.headlineMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Gap(10),
+                  ListTask(
+                    isCompleted: true,
+                  ),
+                  const Gap(10),
+                  ElevatedButton(
+                      onPressed: () {
+                        context.go(AppRouter.addNewTaskScreen);
+                      },
+                      child: DisplayWhiteString(
+                        text: "Add New Task",
+                        fontSize: 20,
+                      ))
+                ],
+              ),
+            ),
+          ),
+          const Text("completed")
+        ],
+      )),
     );
   }
 }

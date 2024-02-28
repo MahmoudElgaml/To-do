@@ -18,7 +18,6 @@ import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view_model/add_task_cubit.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view_model/chang_date_time_cubit.dart';
 
-
 import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/widgets/task_tile.dart';
 
@@ -48,7 +47,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         BlocProvider(
           create: (context) => AddTaskCubit(AddTaskRepoimpl()),
         ),
-        BlocProvider(create: (context) =>SelectCategoryCubit() ,)
+        BlocProvider(
+          create: (context) => SelectCategoryCubit(),
+        )
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -81,7 +82,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                       },
                     ),
                     const Gap(15),
-                   const SelectCategory(),
+                    const SelectCategory(),
                     const Gap(20),
                     const SelectDateTime(),
                     const Gap(20),
@@ -101,8 +102,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                                 ChangDateTimeCubit.get(context).date.toString(),
                             time:
                                 ChangDateTimeCubit.get(context).time.toString(),
-                            taskCategoryId: SelectCategoryCubit.get(context).selectIndex,
-                            isCompleted: false,
+                            taskCategoryId:
+                                SelectCategoryCubit.get(context).selectIndex,
+                            isCompleted: true,
                           );
                           AddTaskCubit.get(context).addTask(task);
                           context.go(AppRouter.homeScreen);
