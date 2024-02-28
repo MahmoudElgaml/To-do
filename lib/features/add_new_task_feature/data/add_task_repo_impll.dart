@@ -9,7 +9,7 @@ class AddTaskRepoimpl implements AddTaskRepo {
   @override
   Future<Either<Failure, int>> addTask(TaskModel task) async {
     try {
-      var myBox = Hive.box(taskBox);
+      var myBox = Hive.box<TaskModel>(taskBox);
       await myBox.add(task);
 
         print("add successfully");

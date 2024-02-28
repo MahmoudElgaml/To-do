@@ -1,3 +1,4 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -7,8 +8,11 @@ import 'package:todolist_sqflite/core/utils/constants.dart';
 import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/home_screen.dart';
 
+import 'core/utils/bloc_observer.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await Hive.initFlutter();
   Hive.registerAdapter(TaskModelAdapter());
   await Hive.openBox<TaskModel>(taskBox);

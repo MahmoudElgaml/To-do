@@ -24,7 +24,7 @@ class AddTaskCubit extends Cubit<AddTaskState> {
 
       result.fold(
         (fail) => emit(
-          AddTaskFailure(fail.toString()),
+          AddTaskFailure(fail.errorMessage),
         ),
         (success) => emit(AddTaskSuccess()),
       );

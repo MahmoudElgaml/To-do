@@ -44,7 +44,7 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
       ..writeByte(5)
       ..write(obj.isCompleted)
       ..writeByte(6)
-      ..write(obj.taskCategory);
+      ..write(obj.taskCategoryId);
   }
 
   @override

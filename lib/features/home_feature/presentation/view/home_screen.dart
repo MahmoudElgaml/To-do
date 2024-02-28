@@ -102,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                       const Gap(10),
                       ElevatedButton(
                           onPressed: () {
-                            context.push(AppRouter.addNewTaskScreen);
+                            context.go(AppRouter.addNewTaskScreen);
                           },
                           child: DisplayWhiteString(
                             text: "Add New Task",
