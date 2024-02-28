@@ -13,11 +13,16 @@ import 'package:todolist_sqflite/core/utils/widgets/display_white_string.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/data/add_task_repo_impll.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view/widgets/costume_text_field.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view/widgets/select_category.dart';
+
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view/widgets/select_date_time.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view_model/add_task_cubit.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view_model/chang_date_time_cubit.dart';
+
+
 import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/widgets/task_tile.dart';
+
+import '../view_model/category_cubit.dart';
 
 class NewTaskScreen extends StatefulWidget {
   const NewTaskScreen({Key? key}) : super(key: key);
@@ -27,12 +32,12 @@ class NewTaskScreen extends StatefulWidget {
 }
 
 class _NewTaskScreenState extends State<NewTaskScreen> {
-
   String? title;
   TextEditingController? noteController;
   String? date;
   String? time;
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -42,7 +47,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         ),
         BlocProvider(
           create: (context) => AddTaskCubit(AddTaskRepoimpl()),
-        )
+        ),
+        BlocProvider(create: (context) =>SelectCategoryCubit() ,)
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -70,12 +76,12 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                       titleText: "TaskTitle",
                       hintText: "Task Title",
                       formKey: _formKey,
-                      onChanged: (value){
-                       title =value;
+                      onChanged: (value) {
+                        title = value;
                       },
                     ),
                     const Gap(15),
-                    SelectCategory(),
+                   const SelectCategory(),
                     const Gap(20),
                     const SelectDateTime(),
                     const Gap(20),
@@ -87,18 +93,17 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                     const Gap(15),
                     ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate())  {
+                        if (_formKey.currentState!.validate()) {
                           var task = TaskModel(
-                              title: title,
-                              note: noteController?.text,
-                              date: ChangDateTimeCubit.get(context)
-                                  .date
-                                  .toString(),
-                              time: ChangDateTimeCubit.get(context)
-                                  .time
-                                  .toString(),
-                              taskCategoryId: 1,
-                              isCompleted: false);
+                            title: title,
+                            note: noteController?.text,
+                            date:
+                                ChangDateTimeCubit.get(context).date.toString(),
+                            time:
+                                ChangDateTimeCubit.get(context).time.toString(),
+                            taskCategoryId: SelectCategoryCubit.get(context).selectIndex,
+                            isCompleted: false,
+                          );
                           AddTaskCubit.get(context).addTask(task);
                           context.go(AppRouter.homeScreen);
                         }

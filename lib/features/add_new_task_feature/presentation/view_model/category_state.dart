@@ -1,7 +1,7 @@
-part of 'select_category_cubit.dart';
+part of 'category_cubit.dart';
 
 @immutable
 abstract class SelectCategoryState {}
 
 class SelectCategoryInitial extends SelectCategoryState {}
-class SelectCategory extends SelectCategoryState {}
+class SelectCategorySuccess extends SelectCategoryState {}
