@@ -5,31 +5,39 @@ import 'package:todolist_sqflite/core/utils/constants.dart';
 import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
 import 'package:todolist_sqflite/features/home_feature/data/reop/home_repo.dart';
 
-class HomeRepoImpl implements HomeRepo{
- var myBox =Hive.box<TaskModel>(taskBox);
- @override
+class HomeRepoImpl implements HomeRepo {
+  var myBox = Hive.box<TaskModel>(taskBox);
+
+  @override
   Either<Failure, List<TaskModel>> fetchCompletedTask() {
-     try{
-       List<TaskModel> completedTask =myBox.values.where((element) => element.isCompleted).toList();
+    try {
+      List<TaskModel> completedTask =
+          myBox.values.where((element) => element.isCompleted).toList();
       return right(completedTask);
-     }
-     catch(e){
+    } catch (e) {
       return left(CacheFail(e.toString()));
-     }
+    }
   }
 
   @override
   Either<Failure, List<TaskModel>> fetchUnCompletedTask() {
-    try{
-      List<TaskModel> completedTask =myBox.values.where((element) => !element.isCompleted).toList();
+    try {
+      List<TaskModel> completedTask =
+          myBox.values.where((element) => !element.isCompleted).toList();
       return right(completedTask);
-    }
-    catch(e){
+    } catch (e) {
       return left(CacheFail(e.toString()));
     }
   }
 
-
-
-
+  @override
+  Future<Either<Failure, void>> updateTask(bool value, TaskModel task) async {
+    try {
+      task.isCompleted = value;
+      await task.save();
+      return right(null);
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
 }

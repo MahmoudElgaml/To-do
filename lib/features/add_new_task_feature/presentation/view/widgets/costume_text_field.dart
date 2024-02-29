@@ -8,22 +8,21 @@ class CostumeTextFiled extends StatelessWidget {
   void Function(String)? onChanged;
   final int maxLines;
   final IconButton? iconButton;
-  final GlobalKey<FormState>?  formKey;
+  final GlobalKey<FormState>? formKey;
+
   CostumeTextFiled(
       {required this.hintText,
       super.key,
       this.maxLines = 1,
       required this.titleText,
       this.iconButton,
-        this.onChanged,
-        this.formKey
-   });
+      this.onChanged,
+      this.formKey});
 
   @override
-
   Widget build(BuildContext context) {
     return Form(
-      key:formKey ,
+      key: formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,7 +38,7 @@ class CostumeTextFiled extends StatelessWidget {
               }
               return null;
             },
-            onChanged:onChanged ,
+            onChanged: onChanged,
             maxLines: maxLines,
             decoration:
                 InputDecoration(hintText: hintText, suffixIcon: iconButton),

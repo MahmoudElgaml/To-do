@@ -33,44 +33,49 @@ class _ListTaskState extends State<ListTask> {
     final double height = widget.isCompleted
         ? context.deviceSize.height * 0.25
         : context.deviceSize.height * 0.3;
-    return BlocBuilder<FetchTaskCubit, FetchTaskState>(
-      builder: (context, state) {
-        if (state is FetchTaskFail) {
-          return Center(child: Text(state.errorMessage));
-        } else if (state is FetchTaskSuccess) {
-          return CostumeContainer(
-            height: height,
-            child: (widget.isCompleted
-                    ? FetchTaskCubit.get(context).completedTask.isEmpty
-                    : FetchTaskCubit.get(context).unCompletedTask.isEmpty)
-                ? Center(
-                    child: Text(
-                      emptyMessage,
-                      style: context.textTheme.headlineSmall,
-                    ),
-                  )
-                : ListView.separated(
-                    physics: const BouncingScrollPhysics(),
-                    separatorBuilder: (context, index) => const Divider(
-                      thickness: 1,
-                      color: Colors.grey,
-                    ),
-                    shrinkWrap: true,
-                    padding: EdgeInsets.zero,
-                    itemBuilder: (context, index) {
-                      return TaskTile(widget.isCompleted
-                          ? FetchTaskCubit.get(context).completedTask[index]
-                          : FetchTaskCubit.get(context).unCompletedTask[index]);
-                    },
-                    itemCount: widget.isCompleted
-                        ? FetchTaskCubit.get(context).completedTask.length
-                        : FetchTaskCubit.get(context).unCompletedTask.length,
-                  ),
-          );
-        } else {
-          return const Text(" aha");
+    return BlocConsumer<FetchTaskCubit, FetchTaskState>(
+      listener: (context, state) {
+        if(state is UpdateTaskState){
+          widget.isCompleted
+              ? FetchTaskCubit.get(context).fetchCompletedTask()
+              : FetchTaskCubit.get(context).fetchUnCompletedTask();
         }
       },
-    );
+        builder: (context, state) {
+      if (state is FetchTaskFail) {
+        return Center(child: Text(state.errorMessage));
+      }
+      else {
+        return CostumeContainer(
+          height: height,
+          child: (widget.isCompleted
+                  ? FetchTaskCubit.get(context).completedTask.isEmpty
+                  : FetchTaskCubit.get(context).unCompletedTask.isEmpty)
+              ? Center(
+                  child: Text(
+                    emptyMessage,
+                    style: context.textTheme.headlineSmall,
+                  ),
+                )
+              : ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  separatorBuilder: (context, index) => const Divider(
+                    thickness: 1,
+                    color: Colors.grey,
+                  ),
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                    return TaskTile(widget.isCompleted
+                        ? FetchTaskCubit.get(context).completedTask[index]
+                        : FetchTaskCubit.get(context).unCompletedTask[index]);
+                  },
+                  itemCount: widget.isCompleted
+                      ? FetchTaskCubit.get(context).completedTask.length
+                      : FetchTaskCubit.get(context).unCompletedTask.length,
+                ),
+        );
+      }
+    });
   }
 }

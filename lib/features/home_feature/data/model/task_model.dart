@@ -15,7 +15,7 @@ class TaskModel extends HiveObject{
   @HiveField(4)
   final String time;
   @HiveField(5)
-  final bool isCompleted;
+  bool isCompleted;
   @HiveField(6)
   final int? taskCategoryId;
 

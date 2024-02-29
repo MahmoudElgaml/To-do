@@ -12,3 +12,4 @@ class FetchTaskFail extends FetchTaskState {
 
   FetchTaskFail(this.errorMessage);
 }
+class UpdateTaskState extends FetchTaskState{}

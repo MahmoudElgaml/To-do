@@ -4,6 +4,7 @@ import 'package:todolist_sqflite/core/utils/extentions.dart';
 import 'package:todolist_sqflite/core/utils/widgets/costume_category.dart';
 import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/widgets/task_details.dart';
+import 'package:todolist_sqflite/features/home_feature/presentation/view_model/fetch_task_cubit.dart';
 
 class TaskTile extends StatelessWidget {
   TaskTile(this.task, {super.key});
@@ -51,6 +52,7 @@ class TaskTile extends StatelessWidget {
             Checkbox(
               value: task.isCompleted,
               onChanged: (value) {
+                FetchTaskCubit.get(context).updateTask( value!, task);
                 value = true;
               },
             )

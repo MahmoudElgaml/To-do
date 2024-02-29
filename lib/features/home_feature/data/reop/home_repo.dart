@@ -5,4 +5,5 @@ import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dar
 abstract class HomeRepo {
   Either<Failure,List<TaskModel>> fetchUnCompletedTask();
   Either<Failure,List<TaskModel>> fetchCompletedTask();
+   Future< Either<Failure,void>> updateTask(bool value,TaskModel task);
 }

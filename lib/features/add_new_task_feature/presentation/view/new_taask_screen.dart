@@ -31,8 +31,8 @@ class NewTaskScreen extends StatefulWidget {
 }
 
 class _NewTaskScreenState extends State<NewTaskScreen> {
-  String? title;
-  TextEditingController? noteController;
+  late String title;
+  String? note;
   String? date;
   String? time;
   final _formKey = GlobalKey<FormState>();
@@ -90,6 +90,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                       titleText: "Notes",
                       hintText: "Notes",
                       maxLines: 6,
+                      onChanged: (value) {
+                        note=value;
+                      },
                     ),
                     const Gap(15),
                     ElevatedButton(
@@ -97,14 +100,14 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                         if (_formKey.currentState!.validate()) {
                           var task = TaskModel(
                             title: title,
-                            note: noteController?.text,
+                            note: note,
                             date:
                                 ChangDateTimeCubit.get(context).date.toString(),
                             time:
                                 ChangDateTimeCubit.get(context).time.toString(),
                             taskCategoryId:
                                 SelectCategoryCubit.get(context).selectIndex,
-                            isCompleted: true,
+                            isCompleted: false,
                           );
                           AddTaskCubit.get(context).addTask(task);
                           context.go(AppRouter.homeScreen);
