@@ -20,7 +20,9 @@ class ListTask extends StatefulWidget {
 class _ListTaskState extends State<ListTask> {
   @override
   void initState() {
-    FetchTaskCubit.get(context).fetchTask();
+    widget.isCompleted
+        ? FetchTaskCubit.get(context).fetchCompletedTask()
+        : FetchTaskCubit.get(context).fetchUnCompletedTask();
     super.initState();
   }
 
@@ -39,8 +41,8 @@ class _ListTaskState extends State<ListTask> {
           return CostumeContainer(
             height: height,
             child: (widget.isCompleted
-                    ? Helper.getCompletedTask().isEmpty
-                    : state.task.isEmpty)
+                    ? FetchTaskCubit.get(context).completedTask.isEmpty
+                    : FetchTaskCubit.get(context).unCompletedTask.isEmpty)
                 ? Center(
                     child: Text(
                       emptyMessage,
@@ -57,12 +59,12 @@ class _ListTaskState extends State<ListTask> {
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       return TaskTile(widget.isCompleted
-                          ? Helper.getCompletedTask()[index]
-                          : state.task[index]);
+                          ? FetchTaskCubit.get(context).completedTask[index]
+                          : FetchTaskCubit.get(context).unCompletedTask[index]);
                     },
                     itemCount: widget.isCompleted
-                        ? Helper.getCompletedTask().length
-                        : state.task.length,
+                        ? FetchTaskCubit.get(context).completedTask.length
+                        : FetchTaskCubit.get(context).unCompletedTask.length,
                   ),
           );
         } else {

@@ -6,18 +6,30 @@ import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dar
 import 'package:todolist_sqflite/features/home_feature/data/reop/home_repo.dart';
 
 class HomeRepoImpl implements HomeRepo{
-  @override
-  Either<Failure, List<TaskModel>> fetchAllTask() {
-    try{
-      var myBox= Hive.box<TaskModel>(taskBox);
-     var result= myBox.values.toList();
-     return right(result);
-    }
-        catch(e){
+ var myBox =Hive.box<TaskModel>(taskBox);
+ @override
+  Either<Failure, List<TaskModel>> fetchCompletedTask() {
+     try{
+       List<TaskModel> completedTask =myBox.values.where((element) => element.isCompleted).toList();
+      return right(completedTask);
+     }
+     catch(e){
       return left(CacheFail(e.toString()));
-
-        }
+     }
   }
+
+  @override
+  Either<Failure, List<TaskModel>> fetchUnCompletedTask() {
+    try{
+      List<TaskModel> completedTask =myBox.values.where((element) => !element.isCompleted).toList();
+      return right(completedTask);
+    }
+    catch(e){
+      return left(CacheFail(e.toString()));
+    }
+  }
+
+
 
 
 }

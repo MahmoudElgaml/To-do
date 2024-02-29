@@ -10,15 +10,29 @@ part 'fetch_task_state.dart';
 class FetchTaskCubit extends Cubit<FetchTaskState> {
   FetchTaskCubit(this.homeRepo) : super(FetchTaskInitial());
   HomeRepo homeRepo;
+  List<TaskModel> completedTask=[];
+  List<TaskModel> unCompletedTask=[];
   static FetchTaskCubit get(context) => BlocProvider.of(context);
-  fetchTask() {
-    homeRepo.fetchAllTask().fold(
+  fetchCompletedTask() {
+    homeRepo.fetchCompletedTask().fold(
           (fail) {
             emit(FetchTaskFail(fail.errorMessage));
           },
           (success) {
-            emit(FetchTaskSuccess(success));
+            completedTask=success;
+            emit(FetchTaskSuccess());
           },
         );
+  }
+    fetchUnCompletedTask() {
+    homeRepo.fetchUnCompletedTask().fold(
+          (fail) {
+        emit(FetchTaskFail(fail.errorMessage));
+      },
+          (success) {
+        unCompletedTask=success;
+        emit(FetchTaskSuccess());
+      },
+    );
   }
 }

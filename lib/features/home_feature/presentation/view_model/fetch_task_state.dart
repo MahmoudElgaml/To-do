@@ -4,14 +4,11 @@ part of 'fetch_task_cubit.dart';
 abstract class FetchTaskState {}
 
 class FetchTaskInitial extends FetchTaskState {}
-class FetchTaskSuccess extends FetchTaskState {
-  List<TaskModel> task;
 
-  FetchTaskSuccess(this.task);
-}
+class FetchTaskSuccess extends FetchTaskState {}
+
 class FetchTaskFail extends FetchTaskState {
   final String errorMessage;
 
   FetchTaskFail(this.errorMessage);
 }
-

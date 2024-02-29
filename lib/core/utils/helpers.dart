@@ -22,14 +22,4 @@ abstract class Helper {
       return '12:00';
     }
   }
-
-  static List<TaskModel> getCompletedTask() {
-    List<TaskModel> completedTask = [];
-    for (var task in Hive.box<TaskModel>(taskBox).values.toList()) {
-      if (task.isCompleted) {
-        completedTask.add(task);
-      }
-    }
-    return completedTask;
-  }
 }

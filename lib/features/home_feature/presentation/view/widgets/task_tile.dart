@@ -30,7 +30,7 @@ class TaskTile extends StatelessWidget {
         child: Row(
           children: [
             CostumeCategory(
-                task: task.taskCategoryId!,
+                task: task.taskCategoryId??0,
                 backgroundOpacity: iconOpacity,
                 iconOpacity: backgroundOpacity),
             const Gap(15),
