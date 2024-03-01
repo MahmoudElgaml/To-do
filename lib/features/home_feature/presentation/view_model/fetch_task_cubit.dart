@@ -45,4 +45,12 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
     result.fold((error) => emit(FetchTaskFail(error.errorMessage)),
         (r) => emit(UpdateTaskState()));
   }
+
+  deleteTask(TaskModel task) async {
+    var result = await homeRepo.deleteTask(task);
+    result.fold(
+      (error) => emit(FetchTaskFail(error.errorMessage)),
+      (r) => emit(DeleteTaskState()),
+    );
+  }
 }

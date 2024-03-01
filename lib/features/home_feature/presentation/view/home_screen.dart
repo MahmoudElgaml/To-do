@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:todolist_sqflite/config/routes/routes.dart';
 import 'package:todolist_sqflite/core/utils/extentions.dart';
 import 'package:todolist_sqflite/core/utils/task_category.dart';
@@ -33,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     DisplayWhiteString(
-                      text: "Aug6,2023",
+                      text: DateFormat.yMMMd().format(DateTime.now()),
                       fontSize: 30,
                       fontWeight: FontWeight.w400,
                     ),

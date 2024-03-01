@@ -33,8 +33,7 @@ class NewTaskScreen extends StatefulWidget {
 class _NewTaskScreenState extends State<NewTaskScreen> {
   late String title;
   String? note;
-  String? date;
-  String? time;
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -102,9 +101,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                             title: title,
                             note: note,
                             date:
-                                ChangDateTimeCubit.get(context).date.toString(),
+                                ChangDateTimeCubit.get(context).date.toString().substring(0,10),
                             time:
-                                ChangDateTimeCubit.get(context).time.toString(),
+                               Helper.timeToString(ChangDateTimeCubit.get(context).time),
                             taskCategoryId:
                                 SelectCategoryCubit.get(context).selectIndex,
                             isCompleted: false,

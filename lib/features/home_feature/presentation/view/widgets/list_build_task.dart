@@ -34,18 +34,21 @@ class _ListTaskState extends State<ListTask> {
         ? context.deviceSize.height * 0.25
         : context.deviceSize.height * 0.3;
     return BlocConsumer<FetchTaskCubit, FetchTaskState>(
-      listener: (context, state) {
-        if(state is UpdateTaskState){
-          widget.isCompleted
-              ? FetchTaskCubit.get(context).fetchCompletedTask()
-              : FetchTaskCubit.get(context).fetchUnCompletedTask();
-        }
-      },
-        builder: (context, state) {
+        listener: (context, state) {
+      if (state is UpdateTaskState) {
+        widget.isCompleted
+            ? FetchTaskCubit.get(context).fetchCompletedTask()
+            : FetchTaskCubit.get(context).fetchUnCompletedTask();
+      }
+      if (state is DeleteTaskState) {
+        widget.isCompleted
+            ? FetchTaskCubit.get(context).fetchCompletedTask()
+            : FetchTaskCubit.get(context).fetchUnCompletedTask();
+      }
+    }, builder: (context, state) {
       if (state is FetchTaskFail) {
         return Center(child: Text(state.errorMessage));
-      }
-      else {
+      } else {
         return CostumeContainer(
           height: height,
           child: (widget.isCompleted

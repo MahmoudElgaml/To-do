@@ -6,4 +6,5 @@ abstract class HomeRepo {
   Either<Failure,List<TaskModel>> fetchUnCompletedTask();
   Either<Failure,List<TaskModel>> fetchCompletedTask();
    Future< Either<Failure,void>> updateTask(bool value,TaskModel task);
+   Future< Either<Failure,void>> deleteTask(TaskModel task);
 }

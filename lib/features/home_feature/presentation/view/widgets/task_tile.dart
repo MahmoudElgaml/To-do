@@ -21,8 +21,8 @@ class TaskTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: InkWell(
-        onLongPress: () {
-          // delete task
+        onLongPress: () async{
+          FetchTaskCubit.get(context).deleteTask(task);
         },
         onTap: () async {
           // show detail

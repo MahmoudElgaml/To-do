@@ -40,4 +40,14 @@ class HomeRepoImpl implements HomeRepo {
       return left(Failure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteTask(TaskModel task) async {
+    try {
+      await task.delete();
+      return right(null);
+    } catch (e) {
+      return left(CacheFail(e.toString()));
+    }
+  }
 }
