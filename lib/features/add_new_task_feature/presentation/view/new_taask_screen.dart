@@ -19,7 +19,9 @@ import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view_model/chang_date_time_cubit.dart';
 
 import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
+import 'package:todolist_sqflite/features/home_feature/data/reop/home_rebo_impl.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/widgets/task_tile.dart';
+import 'package:todolist_sqflite/features/home_feature/presentation/view_model/fetch_task_cubit.dart';
 
 import '../view_model/category_cubit.dart';
 
@@ -48,7 +50,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         ),
         BlocProvider(
           create: (context) => SelectCategoryCubit(),
-        )
+        ),
+
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -90,33 +93,39 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                       hintText: "Notes",
                       maxLines: 6,
                       onChanged: (value) {
-                        note=value;
+                        note = value;
                       },
                     ),
                     const Gap(15),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          var task = TaskModel(
-                            title: title,
-                            note: note,
-                            date:
-                                Helper.dateToString(ChangDateTimeCubit.get(context).date!),
-                            time:
-                               Helper.timeToString(ChangDateTimeCubit.get(context).time),
-                            taskCategoryId:
-                                SelectCategoryCubit.get(context).selectIndex,
-                            isCompleted: false,
-                          );
-                          AddTaskCubit.get(context).addTask(task);
-                          context.go(AppRouter.homeScreen);
-                        }
+                    BlocBuilder<FetchTaskCubit, FetchTaskState>(
+                      builder: (context, state) {
+                        return ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              var task = TaskModel(
+                                title: title,
+                                note: note,
+                                date: Helper.dateToString(
+                                    ChangDateTimeCubit.get(context).date!),
+                                time: Helper.timeToString(
+                                    ChangDateTimeCubit.get(context).time),
+                                taskCategoryId: SelectCategoryCubit.get(context)
+                                    .selectIndex,
+                                isCompleted: false,
+                              );
+                              AddTaskCubit.get(context).addTask(task);
+                              FetchTaskCubit.get(context).fetchUnCompletedTask();
+                              FetchTaskCubit.get(context).fetchCompletedTask();
+                              context.go(AppRouter.homeScreen);
+                            }
+                          },
+                          child: Text(
+                            "Save",
+                            style: context.textTheme.titleMedium!
+                                .copyWith(color: Colors.white, fontSize: 20),
+                          ),
+                        );
                       },
-                      child: Text(
-                        "Save",
-                        style: context.textTheme.titleMedium!
-                            .copyWith(color: Colors.white, fontSize: 20),
-                      ),
                     ),
                   ],
                 );

@@ -20,8 +20,8 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
 
   static FetchTaskCubit get(context) => BlocProvider.of(context);
 
-  fetchCompletedTask(String date) {
-    homeRepo.fetchCompletedTask(date).fold(
+  fetchCompletedTask() {
+    homeRepo.fetchCompletedTask(selectedDate).fold(
       (fail) {
         emit(FetchTaskFail(fail.errorMessage));
       },
@@ -32,8 +32,8 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
     );
   }
 
-  fetchUnCompletedTask(String date) {
-    homeRepo.fetchUnCompletedTask(date).fold(
+  fetchUnCompletedTask() {
+    homeRepo.fetchUnCompletedTask(selectedDate).fold(
       (fail) {
         emit(FetchTaskFail(fail.errorMessage));
       },
@@ -60,7 +60,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
 
   onChangeDate(DateTime selectDate) {
     selectedDate=Helper.dateToString(selectDate);
-    fetchCompletedTask(Helper.dateToString(selectDate));
-    fetchUnCompletedTask(Helper.dateToString(selectDate));
+    fetchCompletedTask();
+    fetchUnCompletedTask();
   }
 }

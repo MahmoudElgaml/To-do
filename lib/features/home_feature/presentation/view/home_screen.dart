@@ -20,76 +20,73 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colorScheme;
-    return BlocProvider(
-      create: (context) => FetchTaskCubit(HomeRepoImpl()),
-      child: SafeArea(
-        child: Scaffold(
-            body: Stack(
-          children: [
-            Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: context.deviceSize.height * 0.3,
-                  color: colors.primary,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Gap(20),
-                      BlocBuilder<FetchTaskCubit, FetchTaskState>(
-                        builder: (context, state) {
-                          return EasyDateTimeLine(
-                            dayProps: const EasyDayProps(width: 80),
-                            initialDate: DateTime.now(),
-                            onDateChange: (selectedDate) {
-                              FetchTaskCubit.get(context)
-                                  .onChangeDate(selectedDate);
-                            },
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Positioned(
-              top: context.deviceSize.height * 0.22,
-              right: 0,
-              left: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
+    return SafeArea(
+      child: Scaffold(
+          body: Stack(
+        children: [
+          Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: context.deviceSize.height * 0.3,
+                color: colors.primary,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    ListTask(),
-                    const Gap(10),
-                    Text(
-                      "completed",
-                      style: context.textTheme.headlineMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    const Gap(20),
+                    BlocBuilder<FetchTaskCubit, FetchTaskState>(
+                      builder: (context, state) {
+                        return EasyDateTimeLine(
+                          dayProps: const EasyDayProps(width: 80),
+                          initialDate: DateTime.now(),
+                          onDateChange: (selectedDate) {
+                            FetchTaskCubit.get(context)
+                                .onChangeDate(selectedDate);
+                          },
+                        );
+                      },
                     ),
-                    const Gap(10),
-                    ListTask(
-                      isCompleted: true,
-                    ),
-                    const Gap(10),
-                    ElevatedButton(
-                        onPressed: () {
-                          context.go(AppRouter.addNewTaskScreen);
-                        },
-                        child: DisplayWhiteString(
-                          text: "Add New Task",
-                          fontSize: 20,
-                        ))
                   ],
                 ),
               ),
+            ],
+          ),
+          Positioned(
+            top: context.deviceSize.height * 0.22,
+            right: 0,
+            left: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ListTask(),
+                  const Gap(10),
+                  Text(
+                    "completed",
+                    style: context.textTheme.headlineMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Gap(10),
+                  ListTask(
+                    isCompleted: true,
+                  ),
+                  const Gap(10),
+                  ElevatedButton(
+                      onPressed: () {
+                        context.push(AppRouter.addNewTaskScreen);
+                      },
+                      child: DisplayWhiteString(
+                        text: "Add New Task",
+                        fontSize: 20,
+                      ))
+                ],
+              ),
             ),
-          ],
-        )),
-      ),
+          ),
+        ],
+      )),
     );
   }
 }

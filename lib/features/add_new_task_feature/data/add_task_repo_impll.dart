@@ -12,8 +12,6 @@ class AddTaskRepoimpl implements AddTaskRepo {
       var myBox = Hive.box<TaskModel>(taskBox);
       await myBox.add(task);
 
-        print("add successfully");
-
       return right(0);
     } catch (e) {
       return left(Failure(e.toString()));

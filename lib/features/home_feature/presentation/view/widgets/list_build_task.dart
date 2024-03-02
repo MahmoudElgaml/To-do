@@ -21,8 +21,8 @@ class _ListTaskState extends State<ListTask> {
   @override
   void initState() {
     widget.isCompleted
-        ? FetchTaskCubit.get(context).fetchCompletedTask(FetchTaskCubit.get(context).selectedDate)
-        : FetchTaskCubit.get(context).fetchUnCompletedTask(FetchTaskCubit.get(context).selectedDate);
+        ? FetchTaskCubit.get(context).fetchCompletedTask()
+        : FetchTaskCubit.get(context).fetchUnCompletedTask();
     super.initState();
   }
 
@@ -37,13 +37,13 @@ class _ListTaskState extends State<ListTask> {
         listener: (context, state) {
       if (state is UpdateTaskState) {
         widget.isCompleted
-            ? FetchTaskCubit.get(context).fetchCompletedTask(FetchTaskCubit.get(context).selectedDate)
-            : FetchTaskCubit.get(context).fetchUnCompletedTask(FetchTaskCubit.get(context).selectedDate);
+            ? FetchTaskCubit.get(context).fetchCompletedTask()
+            : FetchTaskCubit.get(context).fetchUnCompletedTask();
       }
       if (state is DeleteTaskState) {
         widget.isCompleted
-            ? FetchTaskCubit.get(context).fetchCompletedTask(FetchTaskCubit.get(context).selectedDate)
-            : FetchTaskCubit.get(context).fetchUnCompletedTask(FetchTaskCubit.get(context).selectedDate);
+            ? FetchTaskCubit.get(context).fetchCompletedTask()
+            : FetchTaskCubit.get(context).fetchUnCompletedTask();
       }
     }, builder: (context, state) {
       if (state is FetchTaskFail) {
