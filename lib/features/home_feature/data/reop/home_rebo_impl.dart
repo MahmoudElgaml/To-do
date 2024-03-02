@@ -11,8 +11,9 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Either<Failure, List<TaskModel>> fetchCompletedTask(String date) {
     try {
-      List<TaskModel> completedTask =
-          myBox.values.where((element) => element.isCompleted&&date==element.date).toList();
+      List<TaskModel> completedTask = myBox.values
+          .where((element) => element.isCompleted && date == element.date)
+          .toList();
       return right(completedTask);
     } catch (e) {
       return left(CacheFail(e.toString()));
@@ -22,8 +23,9 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Either<Failure, List<TaskModel>> fetchUnCompletedTask(String date) {
     try {
-      List<TaskModel> completedTask =
-          myBox.values.where((element) => !element.isCompleted&&date==element.date).toList();
+      List<TaskModel> completedTask = myBox.values
+          .where((element) => !element.isCompleted && date == element.date)
+          .toList();
       return right(completedTask);
     } catch (e) {
       return left(CacheFail(e.toString()));
@@ -52,17 +54,14 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, void>> deleteAllTask(List<TaskModel> tasks) async{
-    try{
-      for(var i in tasks){
-       await i.delete();
+  Future<Either<Failure, void>> deleteAllTask(List<TaskModel> tasks) async {
+    try {
+      for (var i in tasks) {
+        await i.delete();
       }
       return right(null);
-    }
-    catch(e){
+    } catch (e) {
       return left(CacheFail(e.toString()));
-
     }
-
   }
 }

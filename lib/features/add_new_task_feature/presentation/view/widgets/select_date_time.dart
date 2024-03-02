@@ -17,12 +17,14 @@ class SelectDateTime extends StatelessWidget {
           children: [
             Expanded(
               child: CostumeTextFiled(
+                onTap:() => ChangDateTimeCubit.get(context).showDate(context) ,
+                isRead: true,
                 titleText: "Date",
                 hintText: Helper.dateToString(
                     ChangDateTimeCubit.get(context).date ?? DateTime.now()),
                 iconButton: IconButton(
                   onPressed: () async {
-                    ChangDateTimeCubit.get(context).showDate(context);
+
                   },
                   icon: const Icon(Icons.date_range),
                 ),
@@ -31,12 +33,13 @@ class SelectDateTime extends StatelessWidget {
             const Gap(10),
             Expanded(
               child: CostumeTextFiled(
+                onTap: () =>  ChangDateTimeCubit.get(context).showTime(context),
+                isRead: true,
                 titleText: "Time",
                 hintText:
                     Helper.timeToString(ChangDateTimeCubit.get(context).time),
                 iconButton: IconButton(
                   onPressed: () {
-                    ChangDateTimeCubit.get(context).showTime(context);
                   },
                   icon: const Icon(Icons.access_time_outlined),
                 ),

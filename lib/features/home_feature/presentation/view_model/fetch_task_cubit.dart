@@ -12,8 +12,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
   HomeRepo homeRepo;
   List<TaskModel> completedTask = [];
   List<TaskModel> unCompletedTask = [];
-
-  String selectedDate=Helper.dateToString(DateTime.now());
+  String selectedDate = Helper.dateToString(DateTime.now());
 
   static FetchTaskCubit get(context) => BlocProvider.of(context);
 
@@ -27,6 +26,7 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
         emit(FetchTaskSuccess());
       },
     );
+    emit(FetchTaskInitial());
   }
 
   fetchUnCompletedTask() {
@@ -56,14 +56,15 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
   }
 
   onChangeDate(DateTime selectDate) {
-    selectedDate=Helper.dateToString(selectDate);
+    selectedDate = Helper.dateToString(selectDate);
     fetchCompletedTask();
     fetchUnCompletedTask();
   }
-  deleteAllTask()async{
- var result=await homeRepo.deleteAllTask(unCompletedTask);
- result.fold(
-         (error) => emit(FetchTaskFail(error.errorMessage)) ,
-         (r) => emit(DeleteTaskState()));
+
+  deleteAllTask(bool isCompleted) async {
+    var result = await homeRepo
+        .deleteAllTask(isCompleted ? completedTask : unCompletedTask);
+    result.fold((error) => emit(FetchTaskFail(error.errorMessage)),
+        (r) => emit(DeleteTaskState()));
   }
 }

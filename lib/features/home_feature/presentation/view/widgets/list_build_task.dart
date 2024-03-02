@@ -84,7 +84,8 @@ class _ListTaskState extends State<ListTask> {
                     ),
                     TextButton(
                         onPressed: () {
-                          FetchTaskCubit.get(context).deleteAllTask();
+                          FetchTaskCubit.get(context)
+                              .deleteAllTask(widget.isCompleted);
                         },
                         child: Text(
                           "deleteAll",

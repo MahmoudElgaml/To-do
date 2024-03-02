@@ -8,6 +8,8 @@ class CostumeTextFiled extends StatelessWidget {
  final void Function(String)? onChanged;
   final int maxLines;
   final IconButton? iconButton;
+final  void Function()? onTap;
+  final bool isRead;
   final GlobalKey<FormState>? formKey;
 
   const CostumeTextFiled(
@@ -15,6 +17,8 @@ class CostumeTextFiled extends StatelessWidget {
       super.key,
       this.maxLines = 1,
       required this.titleText,
+        this.isRead=false,
+        this.onTap,
       this.iconButton,
       this.onChanged,
       this.formKey});
@@ -32,6 +36,8 @@ class CostumeTextFiled extends StatelessWidget {
           ),
           const Gap(10),
           TextFormField(
+            readOnly: isRead ,
+            onTap: isRead?onTap:null,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';
