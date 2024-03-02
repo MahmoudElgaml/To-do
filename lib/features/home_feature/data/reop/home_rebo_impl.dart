@@ -9,10 +9,10 @@ class HomeRepoImpl implements HomeRepo {
   var myBox = Hive.box<TaskModel>(taskBox);
 
   @override
-  Either<Failure, List<TaskModel>> fetchCompletedTask() {
+  Either<Failure, List<TaskModel>> fetchCompletedTask(String date) {
     try {
       List<TaskModel> completedTask =
-          myBox.values.where((element) => element.isCompleted).toList();
+          myBox.values.where((element) => element.isCompleted&&date==element.date).toList();
       return right(completedTask);
     } catch (e) {
       return left(CacheFail(e.toString()));
@@ -20,10 +20,10 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Either<Failure, List<TaskModel>> fetchUnCompletedTask() {
+  Either<Failure, List<TaskModel>> fetchUnCompletedTask(String date) {
     try {
       List<TaskModel> completedTask =
-          myBox.values.where((element) => !element.isCompleted).toList();
+          myBox.values.where((element) => !element.isCompleted&&date==element.date).toList();
       return right(completedTask);
     } catch (e) {
       return left(CacheFail(e.toString()));

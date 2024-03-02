@@ -22,4 +22,7 @@ abstract class Helper {
       return '12:00';
     }
   }
+  static String dateToString(DateTime date){
+   return DateFormat.yMMMd().format(date);
+  }
 }

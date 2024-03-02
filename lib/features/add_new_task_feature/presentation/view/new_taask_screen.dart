@@ -101,7 +101,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                             title: title,
                             note: note,
                             date:
-                                ChangDateTimeCubit.get(context).date.toString().substring(0,10),
+                                Helper.dateToString(ChangDateTimeCubit.get(context).date!),
                             time:
                                Helper.timeToString(ChangDateTimeCubit.get(context).time),
                             taskCategoryId:

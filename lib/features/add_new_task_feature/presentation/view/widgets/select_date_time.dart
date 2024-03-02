@@ -20,9 +20,8 @@ class SelectDateTime extends StatelessWidget {
             Expanded(
               child: CostumeTextFiled(
                 titleText: "Date",
-                hintText: DateFormat.yMMMd().format(
-                    ChangDateTimeCubit.get(context).date ??
-                        DateTime.now()),
+                hintText: Helper.dateToString( ChangDateTimeCubit.get(context).date ??
+                    DateTime.now()),
                 iconButton: IconButton(
                   onPressed: () async {
                     ChangDateTimeCubit.get(context).showDate(context);
