@@ -28,7 +28,7 @@ class CostumeTextFiled extends StatelessWidget {
         children: [
           Text(
             titleText,
-            style: context.textTheme.titleMedium,
+            style: context.textTheme.headlineMedium,
           ),
           const Gap(10),
           TextFormField(

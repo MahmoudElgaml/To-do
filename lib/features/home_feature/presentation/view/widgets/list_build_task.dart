@@ -57,22 +57,41 @@ class _ListTaskState extends State<ListTask> {
                     style: context.textTheme.headlineSmall,
                   ),
                 )
-              : ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  separatorBuilder: (context, index) => const Divider(
-                    thickness: 1,
-                    color: Colors.grey,
-                  ),
-                  shrinkWrap: true,
-                  padding: EdgeInsets.zero,
-                  itemBuilder: (context, index) {
-                    return TaskTile(widget.isCompleted
-                        ? FetchTaskCubit.get(context).completedTask[index]
-                        : FetchTaskCubit.get(context).unCompletedTask[index]);
-                  },
-                  itemCount: widget.isCompleted
-                      ? FetchTaskCubit.get(context).completedTask.length
-                      : FetchTaskCubit.get(context).unCompletedTask.length,
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        separatorBuilder: (context, index) => const Divider(
+                          thickness: 1,
+                          color: Colors.grey,
+                        ),
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (context, index) {
+                          return TaskTile(widget.isCompleted
+                              ? FetchTaskCubit.get(context).completedTask[index]
+                              : FetchTaskCubit.get(context)
+                                  .unCompletedTask[index]);
+                        },
+                        itemCount: widget.isCompleted
+                            ? FetchTaskCubit.get(context).completedTask.length
+                            : FetchTaskCubit.get(context)
+                                .unCompletedTask
+                                .length,
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          FetchTaskCubit.get(context).deleteAllTask();
+                        },
+                        child: Text(
+                          "deleteAll",
+                          style: context.textTheme.headlineSmall!
+                              .copyWith(color: Colors.deepPurple),
+                        ))
+                  ],
                 ),
         );
       }

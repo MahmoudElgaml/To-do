@@ -50,4 +50,19 @@ class HomeRepoImpl implements HomeRepo {
       return left(CacheFail(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteAllTask(List<TaskModel> tasks) async{
+    try{
+      for(var i in tasks){
+       await i.delete();
+      }
+      return right(null);
+    }
+    catch(e){
+      return left(CacheFail(e.toString()));
+
+    }
+
+  }
 }

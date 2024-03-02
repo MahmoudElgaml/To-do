@@ -60,4 +60,10 @@ class FetchTaskCubit extends Cubit<FetchTaskState> {
     fetchCompletedTask();
     fetchUnCompletedTask();
   }
+  deleteAllTask()async{
+ var result=await homeRepo.deleteAllTask(unCompletedTask);
+ result.fold(
+         (error) => emit(FetchTaskFail(error.errorMessage)) ,
+         (r) => emit(DeleteTaskState()));
+  }
 }
