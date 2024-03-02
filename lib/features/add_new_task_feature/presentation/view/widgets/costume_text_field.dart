@@ -5,12 +5,12 @@ import 'package:todolist_sqflite/core/utils/extentions.dart';
 class CostumeTextFiled extends StatelessWidget {
   final String hintText;
   final String titleText;
-  void Function(String)? onChanged;
+ final void Function(String)? onChanged;
   final int maxLines;
   final IconButton? iconButton;
   final GlobalKey<FormState>? formKey;
 
-  CostumeTextFiled(
+  const CostumeTextFiled(
       {required this.hintText,
       super.key,
       this.maxLines = 1,

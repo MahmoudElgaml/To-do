@@ -3,15 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:todolist_sqflite/config/routes/routes.dart';
 import 'package:todolist_sqflite/core/utils/extentions.dart';
-import 'package:todolist_sqflite/core/utils/task_category.dart';
-import 'package:todolist_sqflite/core/utils/widgets/costume_container.dart';
 import 'package:todolist_sqflite/core/utils/widgets/display_white_string.dart';
-import 'package:todolist_sqflite/features/home_feature/data/reop/home_rebo_impl.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/widgets/list_build_task.dart';
-import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view_model/fetch_task_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -77,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                       onPressed: () {
                         context.push(AppRouter.addNewTaskScreen);
                       },
-                      child: DisplayWhiteString(
+                      child: const DisplayWhiteString(
                         text: "Add New Task",
                         fontSize: 20,
                       ))

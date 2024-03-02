@@ -8,7 +8,6 @@ import 'package:todolist_sqflite/config/themeing/app_themeing.dart';
 import 'package:todolist_sqflite/core/utils/constants.dart';
 import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
 import 'package:todolist_sqflite/features/home_feature/data/reop/home_rebo_impl.dart';
-import 'package:todolist_sqflite/features/home_feature/presentation/view/home_screen.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view_model/fetch_task_cubit.dart';
 
 import 'core/utils/bloc_observer.dart';

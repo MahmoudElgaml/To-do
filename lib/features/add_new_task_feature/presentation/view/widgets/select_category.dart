@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -7,7 +7,7 @@ import 'package:todolist_sqflite/core/utils/extentions.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view_model/category_cubit.dart';
 
 import '../../../../../core/utils/app_string.dart';
-import '../../../../../core/utils/task_category.dart';
+
 import '../../../../../core/utils/widgets/costume_category.dart';
 
 class SelectCategory extends StatelessWidget {

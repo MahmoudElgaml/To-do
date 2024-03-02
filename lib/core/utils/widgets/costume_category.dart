@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:todolist_sqflite/core/utils/constants.dart';
 import 'package:todolist_sqflite/core/utils/extentions.dart';
-import 'package:todolist_sqflite/core/utils/task_category.dart';
-import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
+
+
 
 class CostumeCategory extends StatelessWidget {
-  int task;
-  double backgroundOpacity;
-  double iconOpacity;
-  bool isSelected;
+ final int task;
+ final double backgroundOpacity;
+ final double iconOpacity;
+ final bool isSelected;
 
-  CostumeCategory(
+  const CostumeCategory(
       {required this.task,
       this.iconOpacity = 0.5,
       this.backgroundOpacity = 0.3,

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:todolist_sqflite/core/utils/extentions.dart';
 
 class DisplayWhiteString extends StatelessWidget {
-  String text;
-  double fontSize;
-  FontWeight? fontWeight;
+ final String text;
+ final double fontSize;
+ final FontWeight? fontWeight;
 
-  DisplayWhiteString(
+  const DisplayWhiteString(
       {required this.text, required this.fontSize, this.fontWeight, super.key});
 
   @override

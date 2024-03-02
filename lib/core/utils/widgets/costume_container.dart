@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:todolist_sqflite/core/utils/extentions.dart';
 
 class CostumeContainer extends StatelessWidget {
-  Widget child;
-  double height;
-  CostumeContainer({ required this.child, super.key,required this.height});
+ final Widget child;
+ final double height;
+  const CostumeContainer({ required this.child, super.key,required this.height});
 
 
   @override

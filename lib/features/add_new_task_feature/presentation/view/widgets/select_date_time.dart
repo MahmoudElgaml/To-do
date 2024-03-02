@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:intl/intl.dart';
-import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view/widgets/select_category.dart';
 
 import '../../../../../core/utils/helpers.dart';
 import '../../view_model/chang_date_time_cubit.dart';
@@ -20,8 +18,8 @@ class SelectDateTime extends StatelessWidget {
             Expanded(
               child: CostumeTextFiled(
                 titleText: "Date",
-                hintText: Helper.dateToString( ChangDateTimeCubit.get(context).date ??
-                    DateTime.now()),
+                hintText: Helper.dateToString(
+                    ChangDateTimeCubit.get(context).date ?? DateTime.now()),
                 iconButton: IconButton(
                   onPressed: () async {
                     ChangDateTimeCubit.get(context).showDate(context);
@@ -34,8 +32,8 @@ class SelectDateTime extends StatelessWidget {
             Expanded(
               child: CostumeTextFiled(
                 titleText: "Time",
-                hintText: Helper.timeToString(
-                    ChangDateTimeCubit.get(context).time),
+                hintText:
+                    Helper.timeToString(ChangDateTimeCubit.get(context).time),
                 iconButton: IconButton(
                   onPressed: () {
                     ChangDateTimeCubit.get(context).showTime(context);
@@ -44,7 +42,6 @@ class SelectDateTime extends StatelessWidget {
                 ),
               ),
             ),
-
           ],
         );
       },

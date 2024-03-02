@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:todolist_sqflite/core/utils/extentions.dart';
-import 'package:todolist_sqflite/core/utils/helpers.dart';
 import 'package:todolist_sqflite/core/utils/widgets/costume_container.dart';
-import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view/widgets/task_tile.dart';
 import 'package:todolist_sqflite/features/home_feature/presentation/view_model/fetch_task_cubit.dart';
 

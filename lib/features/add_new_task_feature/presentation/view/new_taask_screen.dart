@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
+
 import 'package:todolist_sqflite/config/routes/routes.dart';
-import 'package:todolist_sqflite/core/utils/app_string.dart';
+
 import 'package:todolist_sqflite/core/utils/extentions.dart';
 import 'package:todolist_sqflite/core/utils/helpers.dart';
-import 'package:todolist_sqflite/core/utils/task_category.dart';
-import 'package:todolist_sqflite/core/utils/widgets/costume_category.dart';
+
 import 'package:todolist_sqflite/core/utils/widgets/display_white_string.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/data/add_task_repo_impll.dart';
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view/widgets/costume_text_field.dart';
@@ -19,8 +18,7 @@ import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view
 import 'package:todolist_sqflite/features/add_new_task_feature/presentation/view_model/chang_date_time_cubit.dart';
 
 import 'package:todolist_sqflite/features/home_feature/data/model/task_model.dart';
-import 'package:todolist_sqflite/features/home_feature/data/reop/home_rebo_impl.dart';
-import 'package:todolist_sqflite/features/home_feature/presentation/view/widgets/task_tile.dart';
+
 import 'package:todolist_sqflite/features/home_feature/presentation/view_model/fetch_task_cubit.dart';
 
 import '../view_model/category_cubit.dart';
@@ -51,11 +49,10 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         BlocProvider(
           create: (context) => SelectCategoryCubit(),
         ),
-
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: DisplayWhiteString(
+          title: const DisplayWhiteString(
             text: 'Add New Task',
             fontSize: 25,
           ),
@@ -114,7 +111,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                                 isCompleted: false,
                               );
                               AddTaskCubit.get(context).addTask(task);
-                              FetchTaskCubit.get(context).fetchUnCompletedTask();
+                              FetchTaskCubit.get(context)
+                                  .fetchUnCompletedTask();
                               FetchTaskCubit.get(context).fetchCompletedTask();
                               context.go(AppRouter.homeScreen);
                             }
