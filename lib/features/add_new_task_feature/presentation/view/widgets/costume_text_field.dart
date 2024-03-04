@@ -5,10 +5,10 @@ import 'package:todolist_sqflite/core/utils/extentions.dart';
 class CostumeTextFiled extends StatelessWidget {
   final String hintText;
   final String titleText;
- final void Function(String)? onChanged;
+  final void Function(String)? onChanged;
   final int maxLines;
   final IconButton? iconButton;
-final  void Function()? onTap;
+  final void Function()? onTap;
   final bool isRead;
   final GlobalKey<FormState>? formKey;
 
@@ -17,8 +17,8 @@ final  void Function()? onTap;
       super.key,
       this.maxLines = 1,
       required this.titleText,
-        this.isRead=false,
-        this.onTap,
+      this.isRead = false,
+      this.onTap,
       this.iconButton,
       this.onChanged,
       this.formKey});
@@ -36,8 +36,8 @@ final  void Function()? onTap;
           ),
           const Gap(10),
           TextFormField(
-            readOnly: isRead ,
-            onTap: isRead?onTap:null,
+            readOnly: isRead,
+            onTap: isRead ? onTap : null,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';

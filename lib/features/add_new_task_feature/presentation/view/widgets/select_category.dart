@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -33,14 +32,13 @@ class SelectCategory extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        SelectCategoryCubit.get(context).changeCategory(
-                            index);
+                        SelectCategoryCubit.get(context).changeCategory(index);
                       },
                       child: CostumeCategory(
                         task: index,
-                        isSelected: SelectCategoryCubit
-                            .get(context)
-                            .selectIndex == index,
+                        isSelected:
+                            SelectCategoryCubit.get(context).selectIndex ==
+                                index,
                       ),
                     );
                   },

@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
-
-
-
 abstract class Helper {
   static String timeToString(TimeOfDay time) {
     try {
@@ -22,7 +19,8 @@ abstract class Helper {
       return '12:00';
     }
   }
-  static String dateToString(DateTime date){
-   return DateFormat.yMMMd().format(date);
+
+  static String dateToString(DateTime date) {
+    return DateFormat.yMMMd().format(date);
   }
 }

@@ -1,9 +1,11 @@
 import 'package:hive/hive.dart';
 
 import '../../../../core/utils/task_category.dart';
-part'task_model.g.dart';
+
+part 'task_model.g.dart';
+
 @HiveType(typeId: 1)
-class TaskModel extends HiveObject{
+class TaskModel extends HiveObject {
   @HiveField(0)
   final int? id;
   @HiveField(1)
@@ -19,16 +21,12 @@ class TaskModel extends HiveObject{
   @HiveField(6)
   final int? taskCategoryId;
 
-  final TaskCategory? taskCategory;
-
-  TaskModel({
-    this.id,
-     this.title,
-    required this.note,
-    required this.date,
-    required this.time,
-     this.taskCategory=TaskCategory.education,
-    required this.isCompleted,
-    this.taskCategoryId
-  });
+  TaskModel(
+      {this.id,
+      this.title,
+      required this.note,
+      required this.date,
+      required this.time,
+      required this.isCompleted,
+      this.taskCategoryId});
 }

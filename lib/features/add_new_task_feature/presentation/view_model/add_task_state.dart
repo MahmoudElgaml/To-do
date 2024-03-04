@@ -10,7 +10,7 @@ class AddTaskLoading extends AddTaskState {}
 class AddTaskSuccess extends AddTaskState {}
 
 class AddTaskFailure extends AddTaskState {
-  String errorMessage;
+ final String errorMessage;
 
   AddTaskFailure(this.errorMessage);
 }
